@@ -28,3 +28,27 @@ def str2float(s):
 
     s = s.replace('.', '')  # 去掉小数点
     return reduce(fn, map(char2num, s)) / (10 ** (len(s) - s.index('.')))
+
+
+
+
+import random
+import time
+
+
+def download(filename):
+    """下载文件"""
+    print(f'开始下载{filename}.')
+    time.sleep(random.random() * 6)
+    print(f'{filename}下载完成.')
+
+    
+def upload(filename):
+    """上传文件"""
+    print(f'开始上传{filename}.')
+    time.sleep(random.random() * 8)
+    print(f'{filename}上传完成.')
+
+    
+download('MySQL从删库到跑路.avi')
+upload('Python从入门到住院.pdf')
