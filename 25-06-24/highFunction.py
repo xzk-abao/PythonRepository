@@ -52,3 +52,53 @@ def upload(filename):
     
 download('MySQL从删库到跑路.avi')
 upload('Python从入门到住院.pdf')
+
+
+def record_time(func):
+
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f'{func.__name__}执行时间: {end_time - start_time:.2f}秒')
+        return result
+    
+    return wrapper
+
+@record_time
+def download(filename):
+    """下载文件"""
+    print(f'开始下载{filename}.')
+    time.sleep(random.random() * 6)
+    print(f'{filename}下载完成.')
+
+
+download('MySQL从删库到跑路.avi')
+
+
+
+from functools import wraps
+
+def record_time(func):
+    
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f'{func.__name__}执行时间: {end_time - start_time:.2f}秒')
+        return result
+    
+    return wrapper
+
+@record_time
+def download(filename):
+    """下载文件"""
+    print(f'开始下载{filename}.')
+    time.sleep(random.random() * 6)
+    print(f'{filename}下载完成.')
+
+
+download('MySQL从删库到跑路.avi')
+
+download.__wrapped__('Python从入门到住院.pdf')
